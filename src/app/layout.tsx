@@ -23,15 +23,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head />
       <body>
         <ThemeProvider theme={defaultTheme}>
-          <S.Layout className={lang.className}>
-            <StyleSheetManager>
-              <Suspense fallback={<Loader />}>
-                <GlobalStyle />
-                {children}
-              </Suspense>
-            </StyleSheetManager>
-          </S.Layout>
-          <Normalize />
+          <StyleSheetManager>
+            <S.Layout className={lang.className}>
+              <GlobalStyle />
+              <Normalize />
+              <Suspense fallback={<Loader />}>{children}</Suspense>
+            </S.Layout>
+          </StyleSheetManager>
         </ThemeProvider>
       </body>
     </html>
