@@ -19,11 +19,11 @@ export const Content = styled.div`
   gap: 1rem;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 
   h1 {
     color: ${(props) => props.theme["white"]};
-    margin-top: 0;
+    margin: 0 0 0.5rem 0;
   }
 
   button {

@@ -3,7 +3,7 @@ export interface ForecastResponseProps {
     periods: {
       number: number;
       name: string;
-      startTime: Date;
+      startTime: string | Date;
       endTime: string;
       isDaytime: boolean;
       temperature: number;

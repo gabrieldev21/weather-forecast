@@ -13,7 +13,7 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: space-between;
   max-width: 275px;
-  background-color: ${(props) => props.theme["gray-600"]};
+  background-color: ${(props) => props.theme["gray-500"]};
   padding: 0.7rem;
   margin-bottom: 1rem;
   border-radius: 0.5rem;

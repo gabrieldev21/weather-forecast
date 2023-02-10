@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { formattedDate } from "@utils/formattedDate";
 import { CardProps } from "./types";
 import * as S from "./styled";
 
@@ -36,13 +37,7 @@ export const Card = ({ forecast }: CardProps) => {
             width={250}
             height={150}
           />
-          <span>
-            {new Date(item.startTime).toLocaleDateString("en-US", {
-              day: "2-digit",
-              month: "2-digit",
-              year: "2-digit",
-            })}
-          </span>
+          <span>{formattedDate(item.startTime)}</span>
         </S.Content>
       ))}
     </S.Container>
