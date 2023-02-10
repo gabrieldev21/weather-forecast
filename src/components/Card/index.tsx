@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { formattedDate } from "@utils/formattedDate";
+import { formattedDate } from "../../utils/formattedDate";
 import { CardProps } from "./types";
 import * as S from "./styled";
 

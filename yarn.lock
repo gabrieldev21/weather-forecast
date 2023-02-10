@@ -4335,6 +4335,11 @@ url-parse@^1.5.3:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
 
+us-state-converter@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/us-state-converter/-/us-state-converter-1.0.6.tgz#74499bd866a0518542573d3891c7497e5c9c6c28"
+  integrity sha512-j9T9f7uV8UuFx9oU581qH25V2aNbGmSJCAQnXD6p6ufeHEAvYxRluQHG1ELhTg6PrhMBcjhc4gMCFtjtaZFBjg==
+
 v8-to-istanbul@^9.0.1:
   version "9.0.1"
   resolved "https://registry.yarnpkg.com/v8-to-istanbul/-/v8-to-istanbul-9.0.1.tgz#b6f994b0b5d4ef255e17a0d17dc444a9f5132fa4"

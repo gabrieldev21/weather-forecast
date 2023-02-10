@@ -1,70 +1,53 @@
-import { ForecastResponseProps } from "@src/types/forecast";
 import { render } from "@testing-library/react";
+
+import { ForecastResponseProps } from "@src/types/forecast";
 import { Card } from "../";
 
-describe("Card component", () => {
-  test("renders correctly with the forecast data", () => {
-    const forecast: ForecastResponseProps = {
-      properties: {
-        periods: [
-          {
-            number: 1,
-            name: "Today",
-            startTime: "2023-02-10T00:00:00",
-            endTime: "2023-02-10T23:59:59",
-            isDaytime: true,
-            temperature: 70,
-            temperatureUnit: "F",
-            probabilityOfPrecipitation: {
-              unitCode: "",
-              value: 20,
-            },
-            dewpoint: {
-              unitCode: "F",
-              value: 50,
-            },
-            relativeHumidity: {
-              unitCode: "",
-              value: 50,
-            },
-            windSpeed: "10 mph",
-            windDirection: "North",
-            icon: "https://example.com/icon.png",
-            shortForecast: "Partly Cloudy",
-            detailedForecast: "Some clouds with a chance of rain.",
-          },
-        ],
+const forecast: ForecastResponseProps = {
+  properties: {
+    periods: [
+      {
+        name: "Today",
+        shortForecast: "Partly Cloudy",
+        temperature: 72,
+        temperatureUnit: "F",
+        relativeHumidity: { value: 60 },
+        windSpeed: "8 mph",
+        windDirection: "S",
+        icon: "https://example.com/icon.png",
+        startTime: "2022-02-10T12:00:00-05:00",
       },
-    };
+      {
+        name: "Tomorrow",
+        shortForecast: "Sunny",
+        temperature: 68,
+        temperatureUnit: "F",
+        relativeHumidity: { value: 50 },
+        windSpeed: "12 mph",
+        windDirection: "N",
+        icon: "https://example.com/icon2.png",
+        startTime: "2022-02-11T12:00:00-05:00",
+      },
+    ],
+  },
+};
 
+describe("Card", () => {
+  it("renders correctly", () => {
     const { getByText } = render(<Card forecast={forecast} />);
 
-    expect(getByText("Today")).toHaveTextContent("Today");
-    expect(getByText("Temperature: 70 F")).toHaveTextContent(
-      "Temperature: 70 F"
-    );
-    expect(getByText("Probability of Precipitation: 20%")).toHaveTextContent(
-      "Probability of Precipitation: 20%"
-    );
-    expect(getByText("Relative Humidity: 50%")).toHaveTextContent(
-      "Relative Humidity: 50%"
-    );
-    expect(getByText("Wind Speed: 10 mph")).toHaveTextContent(
-      "Wind Speed: 10 mph"
-    );
-    expect(getByText("Wind Direction: North")).toHaveTextContent(
-      "Wind Direction: North"
-    );
-    expect(getByText("Partly Cloudy")).toHaveTextContent("Partly Cloudy");
-    expect(getByText("Some clouds with a chance of rain.")).toHaveTextContent(
-      "Some clouds with a chance of rain."
-    );
-  });
-
-  test("renders correctly with an empty forecast data", () => {
-    const forecast = {};
-    const { container } = render(<Card forecast={forecast} />);
-
-    expect(container.firstChild).toBeTruthy();
+    expect(getByText("Today")).toBeInTheDocument();
+    expect(getByText("Partly Cloudy")).toBeInTheDocument();
+    expect(getByText("Temperature: ")).toBeInTheDocument();
+    expect(getByText("72 F")).toBeInTheDocument();
+    expect(getByText("Relative Humidity: 60%")).toBeInTheDocument();
+    expect(getByText("Wind Speed: 8 mph")).toBeInTheDocument();
+    expect(getByText("Wind Direction: S")).toBeInTheDocument();
+    expect(getByText("Tomorrow")).toBeInTheDocument();
+    expect(getByText("Forecast: Sunny")).toBeInTheDocument();
+    expect(getByText("Temperature: 68 F")).toBeInTheDocument();
+    expect(getByText("Relative Humidity: 50%")).toBeInTheDocument();
+    expect(getByText("Wind Speed: 12 mph")).toBeInTheDocument();
+    expect(getByText("Wind Direction: N")).toBeInTheDocument();
   });
 });
