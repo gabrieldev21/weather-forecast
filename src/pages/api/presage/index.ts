@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 
-import { API_LOCATION, API_WEATHER } from "@src/service/api";
+import { apiLocation, apiWeather } from "@src/service/api";
 import { ForecastResponseProps } from "@src/types/forecast";
 import { GeoResponseProps, WeatherResponseProps } from "./types";
 
@@ -20,11 +20,11 @@ export default async function handler(
       data: {
         result: { addressMatches },
       },
-    } = await API_LOCATION.get<GeoResponseProps>(
+    } = await apiLocation.get<GeoResponseProps>(
       `address?street=${street}&city=${city}&state=${state}&benchmark=Public_AR_Census2020&format=json`
     );
 
-    const { data: weather } = await API_WEATHER.get<WeatherResponseProps>(
+    const { data: weather } = await apiWeather.get<WeatherResponseProps>(
       `points/${addressMatches[0].coordinates.y},${addressMatches[0].coordinates.x}`
     );
 
