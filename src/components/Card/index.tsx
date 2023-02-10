@@ -36,6 +36,13 @@ export const Card = ({ forecast }: CardProps) => {
             width={250}
             height={150}
           />
+          <span>
+            {new Date(item.startTime).toLocaleDateString("en-US", {
+              day: "2-digit",
+              month: "2-digit",
+              year: "2-digit",
+            })}
+          </span>
         </S.Content>
       ))}
     </S.Container>

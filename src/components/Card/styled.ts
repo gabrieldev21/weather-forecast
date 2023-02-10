@@ -14,9 +14,9 @@ export const Content = styled.div`
   justify-content: space-between;
   max-width: 275px;
   background-color: ${(props) => props.theme["gray-600"]};
-  padding: 10px;
+  padding: 0.7rem;
   margin-bottom: 1rem;
-  border-radius: 8px;
+  border-radius: 0.5rem;
 
   img {
     border-radius: 0.3rem;
@@ -29,17 +29,21 @@ export const Content = styled.div`
   }
 
   h3 {
-    margin: 0;
-    font-size: 1.2em;
+    text-align: center;
+    margin: 0 0 0.3rem 0;
+    font-size: 1.2rem;
     font-weight: 600;
+    border-bottom: 1px solid ${(props) => props.theme["gray-400"]};
+    padding-bottom: 0.4rem;
   }
   span {
+    padding-right: 0.2rem;
     font-size: 0.9rem;
-    text-align: center;
+    text-align: end;
   }
 
   p {
-    margin: 5px 0;
-    font-size: 0.9em;
+    margin: 0.3rem 0;
+    font-size: 1rem;
   }
 `;
