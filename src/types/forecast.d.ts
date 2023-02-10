@@ -1,5 +1,5 @@
 export interface ForecastResponseProps {
-  properties: {
+  properties?: {
     periods: {
       number?: number;
       name?: string;
