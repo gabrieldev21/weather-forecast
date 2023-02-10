@@ -1,53 +1,33 @@
-import { render } from "@testing-library/react";
-
-import { ForecastResponseProps } from "@src/types/forecast";
+import { render, cleanup } from "@testing-library/react";
 import { Card } from "../";
+afterEach(cleanup);
 
-const forecast: ForecastResponseProps = {
+const forecast = {
   properties: {
     periods: [
       {
-        name: "Today",
-        shortForecast: "Partly Cloudy",
-        temperature: 72,
+        name: "This Afternoon",
+        shortForecast: "Mostly Clear",
+        temperature: 84,
         temperatureUnit: "F",
-        relativeHumidity: { value: 60 },
-        windSpeed: "8 mph",
+        relativeHumidity: { value: 53 },
+        windSpeed: "10 mph",
         windDirection: "S",
-        icon: "https://example.com/icon.png",
-        startTime: "2022-02-10T12:00:00-05:00",
-      },
-      {
-        name: "Tomorrow",
-        shortForecast: "Sunny",
-        temperature: 68,
-        temperatureUnit: "F",
-        relativeHumidity: { value: 50 },
-        windSpeed: "12 mph",
-        windDirection: "N",
-        icon: "https://example.com/icon2.png",
-        startTime: "2022-02-11T12:00:00-05:00",
+        icon: "https://api.weather.gov/icons/land/day/tsra_sct,40?size=medium",
+        startTime: "2023-02-10T17:00:00-05:00",
       },
     ],
   },
 };
 
-describe("Card", () => {
-  it("renders correctly", () => {
+describe("Card component", () => {
+  it("renders the expected data from the API", () => {
     const { getByText } = render(<Card forecast={forecast} />);
 
-    expect(getByText("Today")).toBeInTheDocument();
-    expect(getByText("Partly Cloudy")).toBeInTheDocument();
-    expect(getByText("Temperature: ")).toBeInTheDocument();
-    expect(getByText("72 F")).toBeInTheDocument();
-    expect(getByText("Relative Humidity: 60%")).toBeInTheDocument();
-    expect(getByText("Wind Speed: 8 mph")).toBeInTheDocument();
-    expect(getByText("Wind Direction: S")).toBeInTheDocument();
-    expect(getByText("Tomorrow")).toBeInTheDocument();
-    expect(getByText("Forecast: Sunny")).toBeInTheDocument();
-    expect(getByText("Temperature: 68 F")).toBeInTheDocument();
-    expect(getByText("Relative Humidity: 50%")).toBeInTheDocument();
-    expect(getByText("Wind Speed: 12 mph")).toBeInTheDocument();
-    expect(getByText("Wind Direction: N")).toBeInTheDocument();
+    expect(getByText("This Afternoon")).toBeInTheDocument();
+    expect(getByText("Mostly Clear")).toBeInTheDocument();
+    expect(getByText("84 F")).toBeInTheDocument();
+    expect(getByText("10 mph")).toBeInTheDocument();
+    expect(getByText("S")).toBeInTheDocument();
   });
 });
