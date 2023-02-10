@@ -10,17 +10,16 @@ export const Card = ({ forecast }: CardProps) => {
         <S.Content key={item.name}>
           <h3>{item.name}</h3>
           <p>
+            <strong>Forecast: </strong>
+            {item.shortForecast}
+          </p>
+          <p>
             <strong>Temperature: </strong>
             {item.temperature} {item.temperatureUnit}
           </p>
           <p>
-            <strong>Probability of Precipitation: </strong>
-            {item.probabilityOfPrecipitation.value}
-            {item.probabilityOfPrecipitation.unitCode}
-          </p>
-          <p>
             <strong>Relative Humidity: </strong>
-            {item.relativeHumidity.value} {item.relativeHumidity.unitCode}
+            {item.relativeHumidity.value}%
           </p>
 
           <p>
@@ -30,14 +29,6 @@ export const Card = ({ forecast }: CardProps) => {
           <p>
             <strong>Wind Direction: </strong>
             {item.windDirection}
-          </p>
-          <p>
-            <strong>Short Forecast: </strong>
-            {item.shortForecast}
-          </p>
-          <p>
-            <strong>Detailed Forecast: </strong>
-            {item.detailedForecast}
           </p>
           <Image
             src={item.icon}

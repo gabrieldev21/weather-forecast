@@ -16,34 +16,28 @@ export default function Home() {
       <S.Content>
         <h1>Weather Forecast</h1>
         <Input
-          placeholder="Write the Street ..."
+          placeholder="Write the Street ...  as 4600 Silver Hill Rd "
           name="street"
           value={formData.street}
           onChange={handleInputChange}
         />
         <Input
-          placeholder="Write the City ..."
+          placeholder="Write the City ... as Washington"
           name="city"
           value={formData.city}
           onChange={handleInputChange}
         />
         <Input
-          placeholder="Write the State ..."
+          placeholder="Write the State ... as DC"
           name="state"
           value={formData.state}
-          onChange={handleInputChange}
-        />
-        <Input
-          placeholder="Write the Zip Code ..."
-          name="zip"
-          value={formData.zip}
           onChange={handleInputChange}
         />
         <Button onClick={fetchData} title="Search" />
       </S.Content>
       <>
         {forecast && <Card forecast={forecast} />}
-        {error && "I need valid information"}
+        {error && error}
         {loading && <Loader />}
       </>
     </S.Container>

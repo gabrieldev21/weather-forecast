@@ -9,7 +9,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { street, city, state, zip } = req.body;
+  const { street, city, state } = req.body;
 
   if (!street || !city || !state) {
     return res.status(400).json({ error: "Missing parameters" });
@@ -21,7 +21,7 @@ export default async function handler(
         result: { addressMatches },
       },
     } = await API_LOCATION.get<GeoResponseProps>(
-      `address?street=${street}&city=${city}&state=${state}&zip=${zip}&benchmark=Public_AR_Census2020&format=json`
+      `address?street=${street}&city=${city}&state=${state}&benchmark=Public_AR_Census2020&format=json`
     );
 
     const { data: weather } = await API_WEATHER.get<WeatherResponseProps>(

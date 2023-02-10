@@ -9,14 +9,13 @@ const initialState = {
   street: "",
   city: "",
   state: "",
-  zip: "",
 };
 
 export const useWeather = () => {
   const [formData, setFormData] = useState<FormProps>(initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const { setForecast } = useForecastStore();
+  const { setForecast, forecast } = useForecastStore();
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -36,9 +35,15 @@ export const useWeather = () => {
       );
 
       setForecast(data);
+      console.log(forecast);
       setLoading(false);
     } catch (error: any) {
-      setError(error.message);
+      if (error.response.status === 400) {
+        setError("Fill all fields");
+      } else {
+        setError("Prove valid information");
+      }
+
       setLoading(false);
     }
   };

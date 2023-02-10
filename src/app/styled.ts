@@ -22,6 +22,7 @@ export const Content = styled.div`
   margin-bottom: 1rem;
 
   h1 {
+    color: ${(props) => props.theme["gray-100"]};
     margin-top: 0;
   }
 
