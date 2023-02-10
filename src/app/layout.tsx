@@ -5,8 +5,8 @@ import { ThemeProvider } from "styled-components";
 import { Normalize } from "styled-normalize";
 import { Montserrat } from "@next/font/google";
 
-import { Loader } from "@src/components";
 import StyleSheetManager from "@src/utils/styled-registry";
+import { ForecastProvider } from "@context/forecast";
 import { GlobalStyle } from "@styles/globals";
 import { defaultTheme } from "@styles/themes/default";
 import * as S from "@/styled";
@@ -25,9 +25,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <ThemeProvider theme={defaultTheme}>
           <StyleSheetManager>
             <S.Layout className={lang.className}>
-              <GlobalStyle />
-              <Normalize />
-              <Suspense fallback={<Loader />}>{children}</Suspense>
+              <ForecastProvider>
+                <GlobalStyle />
+                <Normalize />
+                {children}
+              </ForecastProvider>
             </S.Layout>
           </StyleSheetManager>
         </ThemeProvider>

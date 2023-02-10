@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { WrapperProps } from "./types";
 
 export const WrapperForm = styled.form<WrapperProps>`
@@ -6,12 +7,13 @@ export const WrapperForm = styled.form<WrapperProps>`
   display: flex;
   align-items: center;
   flex: ${({ flex }) => flex};
-  min-width: 400px;
-  width: 35%;
+  min-width: 300px;
+  max-width: 400px;
 `;
 
 export const Input = styled.input`
-  width: 100%;
+  width: 100vw;
+  min-width: 300px;
   height: 40px;
   border-radius: 16px;
   padding-left: 24px;
