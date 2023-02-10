@@ -4,8 +4,3 @@ export interface FormProps {
   state: string;
   zip: string;
 }
-
-export interface ResponseProps {
-  x: number;
-  y: number;
-}

@@ -14,19 +14,16 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const Title = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
-`;
-
 export const Content = styled.div`
   display: flex;
   gap: 1rem;
   flex-direction: column;
   align-items: flex-start;
+  margin-bottom: 1rem;
+
+  h1 {
+    margin-top: 0;
+  }
 
   button {
     cursor: pointer;

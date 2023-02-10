@@ -7,6 +7,9 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  images: {
+    domains: ["api.weather.gov"],
+  },
 };
 
 module.exports = nextConfig;

@@ -1,19 +1,24 @@
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import axios from "axios";
 
+import { ForecastResponseProps } from "@src/types/forecast";
 import { FormProps } from "./types";
+import { useForecastStore } from "@context/forecast";
+
+const initialState = {
+  street: "",
+  city: "",
+  state: "",
+  zip: "",
+};
 
 export const useWeather = () => {
-  const [formData, setFormData] = useState<FormProps>({
-    street: "",
-    city: "",
-    state: "",
-    zip: "",
-  });
+  const [formData, setFormData] = useState<FormProps>(initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const { setForecast } = useForecastStore();
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
@@ -21,20 +26,19 @@ export const useWeather = () => {
   };
 
   const fetchData = async () => {
+    setForecast({ properties: { periods: [] } });
+    setError("");
     setLoading(true);
     try {
-      const { data } = await axios.post("/api/geolocation", formData);
-      const latitude = data.result.addressMatches[0].coordinates.y;
-      const longitude = data.result.addressMatches[0].coordinates.x;
+      const { data } = await axios.post<ForecastResponseProps>(
+        "/api/presage",
+        formData
+      );
 
-      const { data: weatherData } = await axios.post("/api/forecast", {
-        latitude,
-        longitude,
-      });
-      console.log(weatherData);
+      setForecast(data);
       setLoading(false);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (error: any) {
+      setError(error.message);
       setLoading(false);
     }
   };
